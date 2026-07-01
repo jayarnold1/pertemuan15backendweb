@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Inspiration For You</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ===== RESET & VARIABEL ===== */
+      :root {
+        --primary-start: #4d4be8;
+        --primary-end: #8c3df2;
+        --text-dark: #444;
+        --text-light: #6666d6;
+        --bg-body: #f3f4f8;
+        --bg-card: #ffffff;
+        --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        --radius: 14px;
+        --transition: 0.25s ease;
+        --max-width: 1200px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg-body);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ===== HEADER / HERO ===== */
+      .hero {
+        background: linear-gradient(
+          90deg,
+          var(--primary-start),
+          var(--primary-end)
+        );
+        height: 170px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2.625rem; /* 42px */
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      .hero p {
+        margin-top: 6px;
+        color: #ddd;
+        font-weight: 300;
+      }
+
+      /* ===== CONTAINER & GRID ===== */
+      .container {
+        width: min(var(--max-width), 95%);
+        margin: -25px auto 0;
+        flex: 1;
+        padding-bottom: 2.5rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 22px;
+      }
+
+      /* ===== CARD ===== */
+      .card {
+        background: var(--bg-card);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        box-shadow: var(--shadow);
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+        min-height: 170px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+      }
+
+      .quote-icon {
+        color: #dad5ff;
+        font-size: 2.8rem;
+        line-height: 1;
+        margin-bottom: 4px;
+        user-select: none;
+      }
+
+      .quote {
+        font-size: 1.125rem; /* 18px */
+        color: var(--text-dark);
+        font-style: italic;
+        line-height: 1.7;
+        flex: 1;
+      }
+
+      .divider {
+        margin: 18px 0 14px;
+        border: 0;
+        height: 1px;
+        background: #ececec;
+      }
+
+      .author {
+        text-align: right;
+        color: var(--text-light);
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .author::before {
+        content: "— ";
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 1.75rem; /* 28px */
+        }
+
+        .quote {
+          font-size: 1rem;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+
+        .card {
+          padding: 18px 20px;
+          min-height: 140px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          height: 140px;
+        }
+
+        .hero h1 {
+          font-size: 1.4rem;
+        }
+
+        .quote-icon {
+          font-size: 2.2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="hero">
+      <h1>Daily Inspiration For You</h1>
+      <p>Koleksi kata-kata mutiara</p>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+      <div id="quotesContainer" class="grid" role="list"></div>
+    </main>
+
+    <script>
+      // ===== DATA =====
+      const quotesData = [
+        {
+          id: 8,
+          text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+          author: "Winston Churchill",
+        },
+        {
+          id: 26,
+          text: "Satu-satunya batasan untuk meraih mimpi kita adalah keragu-raguan kita akan hari ini.",
+          author: "Franklin D. Roosevelt",
+        },
+        {
+          id: 3,
+          text: "Jangan menunggu. Waktu tidak akan pernah tepat.",
+          author: "Napoleon Hill",
+        },
+        {
+          id: 15,
+          text: "Jangan biarkan masa lalu mencuri masa depan Anda.",
+          author: "Unknown",
+        },
+        {
+          id: 33,
+          text: "Disiplin adalah jembatan antara tujuan dan pencapaian.",
+          author: "Jim Rohn",
+        },
+        {
+          id: 18,
+          text: "Rahasia untuk maju adalah memulai.",
+          author: "Mark Twain",
+        },
+        {
+          id: 29,
+          text: "Orang yang optimis melihat peluang di setiap bencana; orang pesimis melihat bencana di setiap peluang.",
+          author: "Winston Churchill",
+        },
+        {
+          id: 24,
+          text: "Keberanian bukan berarti tidak takut, melainkan bertindak meskipun merasa takut.",
+          author: "Nelson Mandela",
+        },
+        {
+          id: 12,
+          text: "Act as if what you do makes a difference. It does.",
+          author: "William James",
+        },
+      ];
+
+      // ===== FUNGSI UTAMA =====
+      function shuffleArray(arr) {
+        // Fisher-Yates shuffle
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      function renderQuotes(quotes) {
+        const container = document.getElementById("quotesContainer");
+        if (!container) return;
+
+        // Kosongkan container
+        container.innerHTML = "";
+
+        // Acak data
+        const shuffled = shuffleArray([...quotes]);
+
+        // Bangun kartu
+        const fragment = document.createDocumentFragment();
+
+        shuffled.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.setAttribute("role", "listitem");
+
+          card.innerHTML = `
+                    <div class="quote-icon" aria-hidden="true">❝</div>
+                    <div class="quote">${item.text}</div>
+                    <hr class="divider" />
+                    <div class="author">${item.author}</div>
+                `;
+
+          fragment.appendChild(card);
+        });
+
+        container.appendChild(fragment);
+      }
+
+      // ===== JALANKAN =====
+      document.addEventListener("DOMContentLoaded", () => {
+        renderQuotes(quotesData);
+      });
+    </script>
+  </body>
+</html>
